@@ -3,7 +3,7 @@
 ```
 In directory project use our own package manager for setup 'node_modules' in environment. I use yarn
 
-1 yarn
+1 yarn # download all 'package.json' deps
 2 yarn build # run that if you wanna build project and raise him locally or with web_proxy
 3 yarn dev # run project as dev mode
 4 yarn start # this command starts the project in production mode (if you are using this mode and have made some local changes to the project, this will not change the changes in production mode)
