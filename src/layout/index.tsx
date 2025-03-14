@@ -1,7 +1,8 @@
+import { analytics } from '@/utils';
 import React from 'react'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-    
+
     React.useLayoutEffect(() => {
         const locale: string = localStorage.getItem('locale') as string;
         if (!localStorage.getItem('locale')) {
@@ -10,6 +11,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             localStorage.setItem('locale', locale)
         }
     }, [])
+
+    React.useEffect(() => {
+        if (analytics) {
+          console.log("Firebase Analytics initialized");
+        }
+      }, []);
 
     return (
         <div>
