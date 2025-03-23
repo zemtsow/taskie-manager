@@ -1,7 +1,7 @@
 {
   "name": "vite-react-ts-temaplte",
   "private": true,
-  "version": "0.0.0",
+  "version": "v1.2.1-mega",
   "type": "module",
   "scripts": {
     "dev": "vite",
