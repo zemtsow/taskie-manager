@@ -41,7 +41,7 @@ const TaskListItem = ({ task }: { task: StoreDataTypes.Task }) => {
                         }
                         type="text"
                         placeholder="Title"
-                        className="text-base border outline-none p-2 rounded-md w-full"
+                        className="text-base border outline-none p-2 bg-primary text-secondary rounded-md w-full"
                     />
 
                     <select
@@ -49,7 +49,7 @@ const TaskListItem = ({ task }: { task: StoreDataTypes.Task }) => {
                         onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                             setInputFields((prev) => ({ ...prev, category: e.target.value }))
                         }
-                        className="text-base border outline-none p-2 rounded-md w-full"
+                        className="text-base border-[1px] border-secondary outline-none p-2 bg-primary text-secondary rounded-md w-full"
                     >
                         <option value="General">General</option>
                         <option value="Work">Work</option>
@@ -65,7 +65,7 @@ const TaskListItem = ({ task }: { task: StoreDataTypes.Task }) => {
                                 priority: e.target.value as 'High' | 'Medium' | 'Low',
                             }))
                         }
-                        className="text-base border outline-none p-2 rounded-md w-full"
+                        className="text-base border-[1px] border-secondary outline-none p-2 bg-primary text-secondary rounded-md w-full"
                     >
                         <option value="High">High</option>
                         <option value="Medium">Medium</option>
@@ -80,7 +80,7 @@ const TaskListItem = ({ task }: { task: StoreDataTypes.Task }) => {
                                 status: e.target.value as 'Pending' | 'Completed',
                             }))
                         }
-                        className="text-base border outline-none p-2 rounded-md w-full"
+                        className="text-base border-[1px] border-secondary outline-none p-2 rounded-md bg-primary text-secondary w-full"
                     >
                         <option value="Pending">Pending</option>
                         <option value="Completed">Completed</option>
@@ -104,8 +104,8 @@ const TaskListItem = ({ task }: { task: StoreDataTypes.Task }) => {
                 </form>
             ) : (
                 <div>
-                    <div className="font-medium break-words w-full">{task.title}</div>
-                    <ul className="flex flex-row gap-x-2 text-sm text-gray-500">
+                    <div className="font-medium break-words w-full text-secondary">{task.title}</div>
+                    <ul className="flex flex-row gap-x-2 text-sm text-blast">
                         <li>{task.category}</li>
                         <li className="text-gray-400">·</li>
                         <li>{task.priority}</li>
@@ -121,7 +121,7 @@ const TaskListItem = ({ task }: { task: StoreDataTypes.Task }) => {
                         <button
                             type="button"
                             onClick={() => toggleTaskStatus(task.id)}
-                            className="bg-green-400 text-white hover:opacity-50 duration-200 py-1 px-3 rounded-md text-sm"
+                            className="bg-primary text-secondary hover:opacity-50 duration-200 py-1 px-3 rounded-md text-sm"
                         >
                             {task.status === 'Pending' ? 'Complete' : 'Undo'}
                         </button>

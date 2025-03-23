@@ -42,22 +42,22 @@ const AddTaskInput: React.FC = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTaskTitle(e.target.value)}
             placeholder="Write your own note"
             className={`${taskTitle.length === maxLengthTitle && 'border-red-500'
-              } text-base border outline-none p-3 rounded-xl w-full placeholder:text-gray-400 text-gray-400`}
+              } text-base bg-primary border-[1px] border-secondary p-3 rounded-xl w-full placeholder:text-secondary text-secondary`}
           />
           <div
             className={`${taskTitle.length === maxLengthTitle && 'text-red-500'
-              } absolute right-3 text-gray-400`}
+              } absolute right-3 text-secondary`}
           >
             {taskTitle.length} / {maxLengthTitle}
           </div>
         </div>
 
         <div className="w-full">
-          <label className="block text-gray-700 text-sm mb-1">Category</label>
+          <label className="block text-secondary text-sm mb-1">Category</label>
           <select
             value={taskCategory}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setTaskCategory(e.target.value)}
-            className="w-full p-2 border rounded-xl"
+            className="w-full p-3 border-[1px] border-secondary rounded-xl bg-primary text-secondary"
           >
             <option value="General">General</option>
             <option value="Work">Work</option>
@@ -67,13 +67,13 @@ const AddTaskInput: React.FC = () => {
         </div>
 
         <div className="w-full">
-          <label className="block text-gray-700 text-sm mb-1">Priority</label>
+          <label className="block text-secondary text-sm mb-1">Priority</label>
           <select
             value={taskPriority}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
               setTaskPriority(e.target.value as 'High' | 'Medium' | 'Low')
             }
-            className="w-full p-2 border rounded-xl"
+            className="w-full p-3 border rounded-xl bg-primary text-secondary"
           >
             <option value="High">High</option>
             <option value="Medium">Medium</option>
@@ -81,10 +81,9 @@ const AddTaskInput: React.FC = () => {
           </select>
         </div>
 
-        {/* Кнопка добавления задачи */}
         <button
           type="submit"
-          className="active:bg-blue-500 select-none duration-300 bg-blue-400 py-2 text-white px-6 text-sm rounded-md"
+          className=" text-secondary hover:opacity-50 select-none duration-300 bg-primary py-2 px-6 text-sm rounded-md"
         >
           Add
         </button>

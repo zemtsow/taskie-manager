@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer';
 import { analytics } from '@/utils';
 import React from 'react'
 
@@ -14,13 +15,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
     React.useEffect(() => {
         if (analytics) {
-          console.log("Firebase Analytics initialized");
+            console.log("Firebase Analytics initialized");
         }
-      }, []);
+    }, []);
 
     return (
         <div>
             {children}
+            <Footer/>
         </div>
     )
 }

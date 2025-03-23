@@ -59,18 +59,18 @@ const TaskList: React.FC = () => {
 
   return (
     <div className="mt-4">
-      <div className="flex flex-col md:flex-row gap-4 mb-4">
+      <div className="flex flex-col md:flex-row gap-4 mb-4 ">
         <input
           type="text"
           value={searchTerm}
           onChange={handleSearchChange}
           placeholder="Search tasks by title..."
-          className="border p-2 rounded-md w-full md:w-1/3"
+          className="border-[1px] border-secondary p-2 rounded-md w-full md:w-1/3 bg-primary text-secondary placeholder:text-secondary"
         />
         <select
           value={selectedCategory}
           onChange={handleCategoryChange}
-          className="border p-2 rounded-md w-full md:w-1/4"
+          className="border-[1px] border-secondary p-2  rounded-md w-full md:w-1/4 bg-primary text-secondary"
         >
           <option value="All">All Categories</option>
           <option value="Work">Work</option>
@@ -81,7 +81,7 @@ const TaskList: React.FC = () => {
         <select
           value={selectedPriority}
           onChange={handlePriorityChange}
-          className="border p-2 rounded-md w-full md:w-1/4"
+          className="border-[1px] border-secondary p-2 rounded-md w-full md:w-1/4 bg-primary text-secondary"
         >
           <option value="All">All Priorities</option>
           <option value="High">High</option>
@@ -90,11 +90,11 @@ const TaskList: React.FC = () => {
         </select>
       </div>
 
-      <h2 className="text-lg font-semibold mb-2 text-blue-500">
+      <h2 className="text-lg font-semibold mb-2 text-secondary">
         Task List: <span>{filteredTasks.length}</span>
       </h2>
       {paginatedTasks.length === 0 ? (
-        <div className="text-gray-500">No tasks available</div>
+        <div className="text-secondary">No tasks available</div>
       ) : (
         <ul className="space-y-2">
           {paginatedTasks.map((task) => (
@@ -109,8 +109,8 @@ const TaskList: React.FC = () => {
             onClick={() => goToPage(currentPage - 1)}
             disabled={currentPage === 1}
             className={`px-4 py-2 rounded-md ${
-              currentPage === 1 ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-400'
-            } text-white`}
+              currentPage === 1 ? 'bg-[#0f2c0d] cursor-not-allowed' : 'bg-primary'
+            } text-secondary`}
           >
             Prev
           </button>
@@ -121,8 +121,8 @@ const TaskList: React.FC = () => {
             onClick={() => goToPage(currentPage + 1)}
             disabled={currentPage === totalPages}
             className={`px-4 py-2 rounded-md ${
-              currentPage === totalPages ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-400'
-            } text-white`}
+              currentPage === totalPages ? 'bg-[#0f2c0d] cursor-not-allowed' : 'bg-primary'
+            } text-secondary`}
           >
             Next
           </button>

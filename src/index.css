@@ -2,9 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --c-primary: #1c3520;
+  --c-secondary: #ccff99;
+  --c-third: #39ff14;
+  --c-blast: #b6ff00;
+  --c-limmer: #a3ff00;
+  --c-background-body: linear-gradient(135deg, #0f2c0d, #0d1a0f);
+
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+body {
+  background: var(--c-background-body);
+  height: 100vh;
+}
+/* 
+input {
+  background-color: var(--c-primary);
+  border: 2px solid var(--c-secondary);
+  color: var(--c-secondary);
+} */
