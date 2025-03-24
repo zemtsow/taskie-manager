@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTodoStore } from '@/store';
+import Selector from './Selector';
 
 const AddTaskInput: React.FC = () => {
-  const [taskTitle, setTaskTitle] = useState<string>('');
-  const [taskCategory, setTaskCategory] = useState<string>('General');
-  const [taskPriority, setTaskPriority] = useState<'High' | 'Medium' | 'Low'>('Medium');
+  const [taskTitle, setTaskTitle] = React.useState<string>('');
+  const [taskCategory, setTaskCategory] = React.useState<string>('General');
+  const [taskPriority, setTaskPriority] = React.useState<'High' | 'Medium' | 'Low'>('Medium');
 
   const { addTask } = useTodoStore();
   const maxLengthTitle: number = 58;
@@ -27,13 +28,16 @@ const AddTaskInput: React.FC = () => {
     setTaskPriority('Medium');
   };
 
+  const categories = ["General", "Work", "Personal", "Shopping"]
+  const priority = ["High", "Medium", "Low"]
+
   return (
     <div className="flex flex-col gap-4">
       <form
         onSubmit={handleAddTask}
         className="flex flex-col gap-4 justify-center items-center my-2"
       >
-        
+
         <div className="w-full flex flex-row justify-center items-center relative">
           <input
             type="text"
@@ -53,32 +57,21 @@ const AddTaskInput: React.FC = () => {
         </div>
 
         <div className="w-full">
-          <label className="block text-secondary text-sm mb-1">Category</label>
-          <select
+          <Selector
+            label={"Category"}
             value={taskCategory}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setTaskCategory(e.target.value)}
-            className="w-full p-3 border-[1px] border-secondary rounded-xl bg-primary text-secondary"
-          >
-            <option value="General">General</option>
-            <option value="Work">Work</option>
-            <option value="Personal">Personal</option>
-            <option value="Shopping">Shopping</option>
-          </select>
+            setValue={setTaskCategory}
+            items={categories}
+          />
         </div>
 
         <div className="w-full">
-          <label className="block text-secondary text-sm mb-1">Priority</label>
-          <select
+        <Selector
+            label={"Priority"}
             value={taskPriority}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              setTaskPriority(e.target.value as 'High' | 'Medium' | 'Low')
-            }
-            className="w-full p-3 border rounded-xl bg-primary text-secondary"
-          >
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-          </select>
+            setValue={setTaskPriority}
+            items={priority}
+          />
         </div>
 
         <button
