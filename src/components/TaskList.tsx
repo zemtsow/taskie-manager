@@ -1,12 +1,12 @@
 import React, { useMemo, useState } from 'react';
 import { useTodoStore } from '@/store';
 import TaskListItem from './TaskListItem';
+import Selector from './Selector';
 
 const ITEMS_PER_PAGE = 10;
 
 const TaskList: React.FC = () => {
   const { filter, tasks, setFilter } = useTodoStore();
-
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedPriority, setSelectedPriority] = useState<string>('All');
@@ -19,15 +19,13 @@ const TaskList: React.FC = () => {
     setCurrentPage(1);
   };
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
+  const handleCategoryChange = (value: string) => {
     setSelectedCategory(value);
     setFilter({ category: value === 'All' ? undefined : value });
     setCurrentPage(1);
   };
 
-  const handlePriorityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
+  const handlePriorityChange = (value: string) => {
     setSelectedPriority(value);
     setFilter({ priority: value === 'All' ? undefined : value as 'High' | 'Medium' | 'Low' });
     setCurrentPage(1);
@@ -57,37 +55,33 @@ const TaskList: React.FC = () => {
     }
   };
 
+  const categories = ["All", "Work", "Personal", "Shopping", "General"]
+  const priority = ["All", "High", "Medium", "Low"]
+
   return (
     <div className="mt-4">
-      <div className="flex flex-col md:flex-row gap-4 mb-4 ">
+      <div className="flex flex-col md:grid grid-cols-1 gap-4 mb-4 ">
         <input
           type="text"
           value={searchTerm}
           onChange={handleSearchChange}
           placeholder="Search tasks by title..."
-          className="border-[1px] border-secondary p-2 rounded-md w-full md:w-1/3 bg-primary text-secondary placeholder:text-secondary"
+          className="text-base bg-primary border-[1px] border-secondary p-3 rounded-xl w-full placeholder:text-secondary text-secondary"
         />
-        <select
+        <div className="flex flex-row gap-2">
+        <Selector
+          label={"Category"}
           value={selectedCategory}
-          onChange={handleCategoryChange}
-          className="border-[1px] border-secondary p-2  rounded-md w-full md:w-1/4 bg-primary text-secondary"
-        >
-          <option value="All">All Categories</option>
-          <option value="Work">Work</option>
-          <option value="Personal">Personal</option>
-          <option value="Shopping">Shopping</option>
-          <option value="General">General</option>
-        </select>
-        <select
+          setValue={handleCategoryChange}
+          items={categories}
+        />
+        <Selector
+          label={"Category"}
           value={selectedPriority}
-          onChange={handlePriorityChange}
-          className="border-[1px] border-secondary p-2 rounded-md w-full md:w-1/4 bg-primary text-secondary"
-        >
-          <option value="All">All Priorities</option>
-          <option value="High">High</option>
-          <option value="Medium">Medium</option>
-          <option value="Low">Low</option>
-        </select>
+          setValue={handlePriorityChange}
+          items={priority}
+        />
+        </div>
       </div>
 
       <h2 className="text-lg font-semibold mb-2 text-secondary">
@@ -108,9 +102,8 @@ const TaskList: React.FC = () => {
           <button
             onClick={() => goToPage(currentPage - 1)}
             disabled={currentPage === 1}
-            className={`px-4 py-2 rounded-md ${
-              currentPage === 1 ? 'bg-[#0f2c0d] cursor-not-allowed' : 'bg-primary'
-            } text-secondary`}
+            className={`px-4 py-2 rounded-md ${currentPage === 1 ? 'bg-[#0f2c0d] cursor-not-allowed' : 'bg-primary'
+              } text-secondary`}
           >
             Prev
           </button>
@@ -120,9 +113,8 @@ const TaskList: React.FC = () => {
           <button
             onClick={() => goToPage(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className={`px-4 py-2 rounded-md ${
-              currentPage === totalPages ? 'bg-[#0f2c0d] cursor-not-allowed' : 'bg-primary'
-            } text-secondary`}
+            className={`px-4 py-2 rounded-md ${currentPage === totalPages ? 'bg-[#0f2c0d] cursor-not-allowed' : 'bg-primary'
+              } text-secondary`}
           >
             Next
           </button>
