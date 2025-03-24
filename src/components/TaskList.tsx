@@ -68,7 +68,7 @@ const TaskList: React.FC = () => {
           placeholder="Search tasks by title..."
           className="text-base bg-primary border-[1px] border-secondary p-3 rounded-xl w-full placeholder:text-secondary text-secondary"
         />
-        <div className="flex flex-row gap-2">
+        <div className="flex mobileS:flex-col lg:flex-row gap-2">
         <Selector
           label={"Category"}
           value={selectedCategory}
